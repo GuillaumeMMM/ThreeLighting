@@ -9,6 +9,7 @@
   "author": "Guillaume Meigniez",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^1.18.3",
     "three": "^0.94.0"
   }
 }
