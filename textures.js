@@ -8,25 +8,29 @@ var renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-var geometry1 = new THREE.BoxGeometry(3, 1, 1);
-// var material = new THREE.MeshPhongMaterial({ color: 'red', transparent: true, opacity: 1 });
-
 //  TEXTURE
-var texture1 = new THREE.ImageUtils.loadTexture('./img/blue.jpg');
+var texture1 = new THREE.ImageUtils.loadTexture('./img/orange.jpg');
 texture1.wrapS = THREE.RepeatWrapping;
 texture1.wrapT = THREE.RepeatWrapping;
-var texture2 = new THREE.ImageUtils.loadTexture('./img/wall.jpg');
+texture1.offset.set( 0, 0 );
+texture1.repeat.set( 3, 2.5 );
+
+var texture2 = new THREE.ImageUtils.loadTexture('./img/exp.jpg');
 texture2.wrapS = THREE.RepeatWrapping;
 texture2.wrapT = THREE.RepeatWrapping;
+
 var texture3 = new THREE.ImageUtils.loadTexture('./img/marble.jpeg');
 texture3.wrapS = THREE.RepeatWrapping;
 texture3.wrapT = THREE.RepeatWrapping;
+
 //  Use python -m http.server for the texture to load
+
 
 var material1 = new THREE.MeshPhongMaterial({map: texture1});
 var material2 = new THREE.MeshPhongMaterial({map: texture2});
 var material3 = new THREE.MeshPhongMaterial({map: texture3});
 
+var geometry1 = new THREE.BoxGeometry(3, 1, 1);
 var cube1 = new THREE.Mesh(geometry1, material1);
 cube1.position.set(-5, 0, -2);
 scene.add(cube1);
@@ -38,8 +42,14 @@ scene.add(cube2);
 
 var geometry3 = new THREE.BoxGeometry(1, 3, 2);
 var cube3 = new THREE.Mesh(geometry3, material3);
-cube3.position.set(0, 0, -2);
+cube3.position.set(0, 0, 20);
 scene.add(cube3);
+
+var sphereGeometry = new THREE.SphereGeometry(3, 30, 30);
+var sphere = new THREE.Mesh(sphereGeometry, material1);
+sphere.position.set(0, 0, -5)
+scene.add(sphere);
+
 
 cube1Rotation = true;
 cube2Rotation = true;
@@ -77,6 +87,8 @@ function animate() {
         cube3.rotation.x += 0.01;
         cube3.rotation.y -= 0.01;
     }
+    // sphere.rotation.x += 0.01;
+    sphere.rotation.y += 0.01;
 
     renderer.render(scene, camera);
 }

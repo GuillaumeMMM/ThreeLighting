@@ -5,7 +5,7 @@ scene.background = new THREE.Color('blue');
 var camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 var renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerWidth, window.innerHeight / 2);
 document.body.appendChild(renderer.domElement);
 
 var geometry1 = new THREE.BoxGeometry(3, 1, 1);
@@ -14,7 +14,6 @@ var material = new THREE.MeshPhongMaterial({ color: 'red', transparent: true, op
 var cube1 = new THREE.Mesh(geometry1, material);
 cube1.position.set(-5, 0, -2);
 scene.add(cube1);
-
 var geometry2 = new THREE.BoxGeometry(2, 2, 1);
 var cube2 = new THREE.Mesh(geometry2, material);
 cube2.position.set(5, 0, -2);
